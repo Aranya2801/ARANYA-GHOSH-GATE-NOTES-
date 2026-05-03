@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GATE Notes — Aranya Ghosh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+  window.MathJax = {
+    tex: { inlineMath: [['$','$'], ['\\(','\\)']] },
+    startup: { typeset: false }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+<style>
+/* ── TOKENS ────────────────────────────────────────────────── */
+:root {
+  --bg:        #f9f8f6;
+  --bg2:       #f2f1ee;
+  --bg3:       #e8e6e1;
+  --border:    #dddad3;
+  --text:      #1a1916;
+  --text2:     #4a4844;
+  --text3:     #7a7773;
+  --gold:      #9a7b3f;
+  --gold-l:    #c9a84c;
+  --blue:      #2a5298;
+  --blue-l:    #4c7ac9;
+  --red:       #9b2335;
+  --link:      #2a5298;
+  --code-bg:   #efefec;
+  --shadow:    0 1px 3px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.05);
+  --shadow-lg: 0 2px 6px rgba(0,0,0,.08), 0 12px 40px rgba(0,0,0,.08);
+  --radius:    6px;
+  --font-body: 'DM Sans', sans-serif;
+  --font-serif:'EB Garamond', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+[data-theme="dark"] {
+  --bg:        #111110;
+  --bg2:       #1a1918;
+  --bg3:       #232220;
+  --border:    #2e2d2b;
+  --text:      #e8e6e0;
+  --text2:     #b0ada6;
+  --text3:     #6e6b65;
+  --gold:      #c9a84c;
+  --gold-l:    #e0c070;
+  --blue:      #4c7ac9;
+  --blue-l:    #7aa3e0;
+  --link:      #7aa3e0;
+  --code-bg:   #1e1d1b;
+  --shadow:    0 1px 3px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.2);
+  --shadow-lg: 0 2px 6px rgba(0,0,0,.3), 0 12px 40px rgba(0,0,0,.3);
+}
+
+/* ── RESET ─────────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.65;
+  min-height:100vh;
+  transition:background .25s,color .25s;
+}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+
+/* ── LAYOUT ────────────────────────────────────────────────── */
+.wrap{max-width:1100px;margin:0 auto;padding:0 28px}
+
+/* ── NAV ───────────────────────────────────────────────────── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  height:58px;gap:16px;
+}
+.nav-logo{
+  font-family:var(--font-serif);
+  font-size:1.15rem;
+  font-weight:500;
+  color:var(--text);
+  letter-spacing:.01em;
+  white-space:nowrap;
+}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{
+  font-size:.8rem;font-weight:500;
+  color:var(--text2);
+  padding:6px 12px;border-radius:var(--radius);
+  letter-spacing:.04em;text-transform:uppercase;
+  transition:color .15s,background .15s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--bg3);text-decoration:none}
+.nav-right{display:flex;align-items:center;gap:8px}
+#theme-btn{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg2);color:var(--text2);font-size:.9rem;
+  transition:background .15s;
+}
+#theme-btn:hover{background:var(--bg3)}
+.hamburger{display:none;flex-direction:column;gap:5px;padding:6px}
+.hamburger span{display:block;width:20px;height:2px;background:var(--text2);border-radius:2px;transition:.2s}
+
+/* ── PAGES ─────────────────────────────────────────────────── */
+.page{display:none;animation:fadeIn .3s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ── HOME ──────────────────────────────────────────────────── */
+.hero{
+  padding:100px 0 80px;
+  border-bottom:1px solid var(--border);
+}
+.hero-eyebrow{
+  font-size:.75rem;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;
+}
+.hero h1{
+  font-family:var(--font-serif);
+  font-size:clamp(2.4rem,5vw,3.8rem);
+  font-weight:500;line-height:1.18;
+  color:var(--text);margin-bottom:28px;
+  max-width:700px;
+}
+.hero h1 em{font-style:italic;color:var(--text2)}
+.hero-sub{
+  font-size:1.05rem;color:var(--text2);
+  max-width:560px;line-height:1.8;margin-bottom:40px;
+}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:48px}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:7px 16px;border-radius:100px;
+  border:1px solid var(--border);
+  font-size:.78rem;font-weight:500;
+  color:var(--text2);background:var(--bg2);
+}
+.badge-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--gold);flex-shrink:0;
+}
+.badge-dot.blue{background:var(--blue-l)}
+.badge-dot.red{background:var(--red)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 24px;border-radius:var(--radius);
+  font-size:.85rem;font-weight:500;
+  transition:all .15s;letter-spacing:.01em;
+}
+.btn-primary{
+  background:var(--text);color:var(--bg);
+}
+.btn-primary:hover{background:var(--text2);text-decoration:none;color:var(--bg)}
+.btn-secondary{
+  border:1px solid var(--border);color:var(--text2);
+}
+.btn-secondary:hover{background:var(--bg2);color:var(--text);text-decoration:none}
+
+/* Stats row */
+.stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:0;margin:60px 0 0;
+  border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;
+}
+.stat{
+  padding:28px 24px;border-right:1px solid var(--border);
+}
+.stat:last-child{border-right:none}
+.stat-num{
+  font-family:var(--font-serif);
+  font-size:2.2rem;color:var(--text);font-weight:500;
+  line-height:1;margin-bottom:6px;
+}
+.stat-label{font-size:.78rem;color:var(--text3);letter-spacing:.04em;text-transform:uppercase}
+
+/* Featured section */
+.section{padding:72px 0}
+.section-header{
+  display:flex;align-items:baseline;justify-content:space-between;
+  margin-bottom:40px;gap:16px;flex-wrap:wrap;
+}
+.section-title{
+  font-family:var(--font-serif);
+  font-size:1.7rem;font-weight:500;color:var(--text);
+}
+.section-link{font-size:.82rem;color:var(--text3)}
+.section-link:hover{color:var(--text)}
+
+/* Subject cards */
+.subjects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:16px;
+}
+.subject-card{
+  background:var(--bg2);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:28px;
+  cursor:pointer;
+  transition:box-shadow .2s,transform .2s,border-color .2s;
+  position:relative;overflow:hidden;
+}
+.subject-card::before{
+  content:'';position:absolute;
+  top:0;left:0;right:0;height:3px;
+  background:var(--card-accent,var(--gold));
+}
+.subject-card:hover{
+  box-shadow:var(--shadow-lg);
+  transform:translateY(-2px);
+  border-color:var(--card-accent,var(--gold));
+}
+.card-icon{font-size:1.5rem;margin-bottom:14px}
+.card-title{
+  font-family:var(--font-serif);font-size:1.15rem;
+  font-weight:500;color:var(--text);margin-bottom:8px;
+}
+.card-desc{font-size:.83rem;color:var(--text2);line-height:1.65}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.tag{
+  font-size:.7rem;padding:3px 9px;
+  border-radius:100px;
+  background:var(--bg3);color:var(--text3);
+  letter-spacing:.03em;
+}
+
+/* ── SUBJECTS PAGE ─────────────────────────────────────────── */
+.page-header{padding:64px 0 48px;border-bottom:1px solid var(--border)}
+.page-header h2{
+  font-family:var(--font-serif);
+  font-size:2.2rem;font-weight:500;
+}
+.page-header p{color:var(--text2);margin-top:10px;font-size:.95rem}
+
+/* Search */
+.search-bar{
+  display:flex;align-items:center;gap:10px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--radius);padding:10px 16px;
+  margin:32px 0 24px;max-width:480px;
+}
+.search-bar input{
+  flex:1;background:none;border:none;outline:none;
+  color:var(--text);font-size:.9rem;font-family:inherit;
+}
+.search-bar input::placeholder{color:var(--text3)}
+.search-icon{color:var(--text3);font-size:.85rem}
+
+/* Filter tags */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
+.filter-btn{
+  padding:6px 14px;border-radius:100px;
+  font-size:.77rem;font-weight:500;
+  border:1px solid var(--border);
+  color:var(--text2);background:var(--bg2);
+  transition:.15s;letter-spacing:.02em;
+}
+.filter-btn:hover,.filter-btn.active{
+  background:var(--text);color:var(--bg);border-color:var(--text);
+}
+
+/* Subjects full grid */
+.subjects-full{padding:48px 0}
+.subject-section{margin-bottom:56px}
+.subject-section-header{
+  display:flex;align-items:center;gap:16px;
+  padding-bottom:16px;margin-bottom:24px;
+  border-bottom:1px solid var(--border);
+}
+.subject-section-title{
+  font-family:var(--font-serif);font-size:1.4rem;font-weight:500;
+}
+.topic-list{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:10px;
+}
+.topic-item{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 18px;background:var(--bg2);
+  border:1px solid var(--border);border-radius:var(--radius);
+  cursor:pointer;transition:.15s;
+}
+.topic-item:hover{border-color:var(--gold);background:var(--bg3)}
+.topic-name{font-size:.87rem;font-weight:500;color:var(--text)}
+.topic-meta{font-size:.75rem;color:var(--text3)}
+
+/* ── NOTES VIEWER ──────────────────────────────────────────── */
+.viewer-layout{
+  display:grid;
+  grid-template-columns:220px 1fr;
+  gap:0;min-height:calc(100vh - 58px);
+  border-top:1px solid var(--border);
+}
+.viewer-sidebar{
+  border-right:1px solid var(--border);
+  padding:32px 20px;
+  position:sticky;top:58px;height:calc(100vh - 58px);
+  overflow-y:auto;
+}
+.sidebar-section{margin-bottom:32px}
+.sidebar-label{
+  font-size:.68rem;font-weight:500;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text3);margin-bottom:10px;
+}
+.sidebar-item{
+  display:block;padding:7px 10px;border-radius:4px;
+  font-size:.83rem;color:var(--text2);cursor:pointer;
+  transition:.15s;line-height:1.4;
+}
+.sidebar-item:hover{background:var(--bg2);color:var(--text)}
+.sidebar-item.active{background:var(--bg3);color:var(--text);font-weight:500}
+
+.viewer-main{padding:52px 64px}
+.viewer-breadcrumb{
+  font-size:.78rem;color:var(--text3);
+  margin-bottom:32px;display:flex;gap:8px;align-items:center;
+}
+.viewer-breadcrumb span{color:var(--text3)}
+
+/* Markdown rendering */
+.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4{
+  font-family:var(--font-serif);font-weight:500;color:var(--text);
+}
+.markdown-body h1{font-size:2rem;margin:0 0 24px;line-height:1.2}
+.markdown-body h2{font-size:1.45rem;margin:48px 0 16px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.markdown-body h3{font-size:1.15rem;margin:32px 0 12px}
+.markdown-body h4{font-size:1rem;margin:24px 0 8px}
+.markdown-body p{color:var(--text2);line-height:1.85;margin-bottom:16px}
+.markdown-body ul,.markdown-body ol{color:var(--text2);padding-left:24px;margin-bottom:16px}
+.markdown-body li{margin-bottom:6px;line-height:1.75}
+.markdown-body strong{color:var(--text);font-weight:600}
+.markdown-body em{font-style:italic}
+.markdown-body code{
+  font-family:var(--font-mono);font-size:.82em;
+  background:var(--code-bg);color:var(--text);
+  padding:2px 6px;border-radius:3px;
+}
+.markdown-body pre{
+  background:var(--code-bg);border:1px solid var(--border);
+  border-radius:var(--radius);padding:20px 24px;
+  overflow-x:auto;margin:20px 0;
+}
+.markdown-body pre code{background:none;padding:0;font-size:.83rem;line-height:1.65}
+.markdown-body blockquote{
+  border-left:3px solid var(--gold);
+  padding:14px 20px;background:var(--bg2);
+  border-radius:0 var(--radius) var(--radius) 0;
+  margin:20px 0;color:var(--text2);font-style:italic;
+}
+.markdown-body table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.87rem}
+.markdown-body th{
+  background:var(--bg3);text-align:left;
+  padding:10px 14px;border:1px solid var(--border);
+  font-size:.78rem;letter-spacing:.04em;text-transform:uppercase;color:var(--text2);
+}
+.markdown-body td{padding:10px 14px;border:1px solid var(--border);color:var(--text2)}
+.markdown-body tr:hover td{background:var(--bg2)}
+.markdown-body hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+
+/* Key takeaway box */
+.key-box{
+  background:linear-gradient(135deg,var(--bg2),var(--bg3));
+  border:1px solid var(--border);border-left:3px solid var(--gold);
+  border-radius:var(--radius);padding:20px 24px;margin:24px 0;
+}
+.key-box-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px}
+
+/* ── ABOUT PAGE ────────────────────────────────────────────── */
+.about-layout{
+  display:grid;grid-template-columns:1fr 340px;
+  gap:64px;padding:72px 0;align-items:start;
+}
+.about-main h2{
+  font-family:var(--font-serif);font-size:2rem;
+  font-weight:500;margin-bottom:24px;
+}
+.about-main p{color:var(--text2);line-height:1.9;margin-bottom:18px;font-size:.97rem}
+.about-card{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--radius);padding:32px;position:sticky;top:78px;
+}
+.about-name{
+  font-family:var(--font-serif);font-size:1.5rem;
+  font-weight:500;margin-bottom:4px;
+}
+.about-role{font-size:.83rem;color:var(--text3);margin-bottom:24px}
+.about-item{
+  display:flex;gap:12px;padding:12px 0;
+  border-bottom:1px solid var(--border);
+}
+.about-item:last-of-type{border-bottom:none}
+.about-item-icon{font-size:1rem;flex-shrink:0;margin-top:2px}
+.about-item-text{font-size:.85rem;color:var(--text2);line-height:1.5}
+.about-item-text strong{display:block;color:var(--text);font-size:.88rem;margin-bottom:2px}
+
+/* Achievement callouts */
+.achievement{
+  display:flex;gap:16px;align-items:flex-start;
+  padding:20px;border:1px solid var(--border);
+  border-radius:var(--radius);background:var(--bg2);
+  margin-bottom:12px;
+}
+.achievement-rank{
+  font-family:var(--font-serif);font-size:1.7rem;
+  font-weight:500;color:var(--gold);line-height:1;flex-shrink:0;
+}
+.achievement-text{font-size:.85rem;color:var(--text2);line-height:1.5}
+.achievement-text strong{display:block;color:var(--text);margin-bottom:3px}
+
+/* ── FOOTER ────────────────────────────────────────────────── */
+footer{
+  border-top:1px solid var(--border);
+  padding:40px 0;margin-top:40px;
+}
+.footer-inner{
+  display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:16px;
+}
+.footer-left{font-family:var(--font-serif);font-size:.95rem;color:var(--text2)}
+.footer-right{font-size:.78rem;color:var(--text3)}
+.footer-links{display:flex;gap:16px}
+.footer-links a{font-size:.78rem;color:var(--text3)}
+.footer-links a:hover{color:var(--text)}
+
+/* ── MOBILE NAV ────────────────────────────────────────────── */
+.mobile-menu{
+  display:none;
+  flex-direction:column;gap:4px;
+  padding:12px 0;border-top:1px solid var(--border);
+  background:var(--bg);
+}
+.mobile-menu.open{display:flex}
+.mobile-menu a{
+  padding:10px 28px;font-size:.88rem;
+  color:var(--text2);font-weight:500;
+}
+
+/* ── RESPONSIVE ────────────────────────────────────────────── */
+@media(max-width:900px){
+  .about-layout{grid-template-columns:1fr}
+  .about-card{position:static}
+  .viewer-layout{grid-template-columns:1fr}
+  .viewer-sidebar{display:none}
+  .viewer-main{padding:32px 24px}
+}
+@media(max-width:640px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero{padding:64px 0 48px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{border-bottom:1px solid var(--border)}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-inner">
+    <a class="nav-logo" href="#" onclick="showPage('home')">
+      GATE Notes <span>· AG</span>
+    </a>
+    <div class="nav-links">
+      <a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a>
+      <a href="#" onclick="showPage('subjects')" id="nav-subjects">Subjects</a>
+      <a href="#" onclick="showPage('notes')" id="nav-notes">Notes</a>
+      <a href="#" onclick="showPage('about')" id="nav-about">About</a>
+    </div>
+    <div class="nav-right">
+      <button id="theme-btn" onclick="toggleTheme()" title="Toggle theme">☀</button>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#" onclick="showPage('home');toggleMenu()">Home</a>
+    <a href="#" onclick="showPage('subjects');toggleMenu()">Subjects</a>
+    <a href="#" onclick="showPage('notes');toggleMenu()">Notes</a>
+    <a href="#" onclick="showPage('about');toggleMenu()">About</a>
+  </div>
+</nav>
+
+<!-- ══════════════ HOME PAGE ══════════════ -->
+<div id="page-home" class="page active">
+  <div class="wrap">
+    <section class="hero">
+      <p class="hero-eyebrow">GATE Preparation · Open Access</p>
+      <h1>Notes built for<br/><em>clarity, not shortcuts.</em></h1>
+      <p class="hero-sub">
+        Rigorous, well-structured notes from a serious GATE aspirant. Everything I used
+        to secure AIR 3 in GATE DA and AIR 147 in GATE CS — now freely available.
+      </p>
+      <div class="badges">
+        <span class="badge"><span class="badge-dot"></span>AIR 3 — GATE 2026 (DA)</span>
+        <span class="badge"><span class="badge-dot blue"></span>AIR 147 — GATE 2026 (CS)</span>
+        <span class="badge"><span class="badge-dot red"></span>MS Student, Rutgers University</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#" onclick="showPage('subjects')">Browse All Subjects →</a>
+        <a class="btn btn-secondary" href="https://github.com/aranyaghosh/gate-notes" target="_blank">View on GitHub</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Core Subjects</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">120+</div>
+          <div class="stat-label">Topics Covered</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">400+</div>
+          <div class="stat-label">Practice Problems</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">Free</div>
+          <div class="stat-label">Always</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Subjects</h2>
+        <a href="#" class="section-link" onclick="showPage('subjects')">View all →</a>
+      </div>
+      <div class="subjects-grid" id="home-subjects-grid"></div>
+    </section>
+
+    <section class="section" style="border-top:1px solid var(--border)">
+      <div class="section-header">
+        <h2 class="section-title">How to use these notes</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px">
+        <div class="subject-card" style="--card-accent:var(--gold);cursor:default">
+          <div class="card-icon">01</div>
+          <div class="card-title" style="font-size:1rem">First Pass</div>
+          <div class="card-desc">Read the full notes for a topic. Don't take shortcuts. Build the mental model first.</div>
+        </div>
+        <div class="subject-card" style="--card-accent:var(--blue-l);cursor:default">
+          <div class="card-icon">02</div>
+          <div class="card-title" style="font-size:1rem">Practice</div>
+          <div class="card-desc">Attempt every practice problem without hints. Struggle is where learning happens.</div>
+        </div>
+        <div class="subject-card" style="--card-accent:var(--red);cursor:default">
+          <div class="card-icon">03</div>
+          <div class="card-title" style="font-size:1rem">Revise</div>
+          <div class="card-desc">Use the summary sheets for revision. One page per topic, reviewed weekly.</div>
+        </div>
+        <div class="subject-card" style="--card-accent:var(--gold);cursor:default">
+          <div class="card-icon">04</div>
+          <div class="card-title" style="font-size:1rem">PYQs</div>
+          <div class="card-desc">Solve PYQs after each topic. Cross-reference notes when you find a gap.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ══════════════ SUBJECTS PAGE ══════════════ -->
+<div id="page-subjects" class="page">
+  <div class="wrap">
+    <div class="page-header">
+      <h2>All Subjects</h2>
+      <p>Browse topics by subject. Each topic includes notes, practice problems, and a summary sheet.</p>
+    </div>
+    <div class="subjects-full">
+      <div class="search-bar">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="topic-search" placeholder="Search topics..." oninput="filterTopics()" />
+      </div>
+      <div class="filters" id="tag-filters">
+        <button class="filter-btn active" onclick="setFilter('all',this)">All</button>
+        <button class="filter-btn" onclick="setFilter('important',this)">Important</button>
+        <button class="filter-btn" onclick="setFilter('pyq',this)">PYQ Frequent</button>
+        <button class="filter-btn" onclick="setFilter('formula',this)">Formula Heavy</button>
+        <button class="filter-btn" onclick="setFilter('conceptual',this)">Conceptual</button>
+      </div>
+      <div id="subjects-full-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ NOTES VIEWER ══════════════ -->
+<div id="page-notes" class="page">
+  <div class="viewer-layout">
+    <aside class="viewer-sidebar">
+      <div id="sidebar-content"></div>
+    </aside>
+    <main class="viewer-main">
+      <div class="viewer-breadcrumb" id="viewer-breadcrumb">
+        <span onclick="showPage('subjects')" style="cursor:pointer;color:var(--link)">Subjects</span>
+        <span>›</span>
+        <span id="breadcrumb-subject"></span>
+        <span>›</span>
+        <span id="breadcrumb-topic"></span>
+      </div>
+      <div class="markdown-body" id="note-content"></div>
+    </main>
+  </div>
+</div>
+
+<!-- ══════════════ ABOUT PAGE ══════════════ -->
+<div id="page-about" class="page">
+  <div class="wrap">
+    <div class="about-layout">
+      <div class="about-main">
+        <h2>About This Project</h2>
+        <p>
+          This repository is the study system I built for GATE 2026. I spent months refining it —
+          not just the content, but the <em>structure</em>: how topics connect, what order to cover them in,
+          which problems reveal the most gaps, and what a useful revision sheet actually looks like.
+        </p>
+        <p>
+          The notes are organized around understanding, not memorization. Every formula has a derivation.
+          Every algorithm has a trace. Every section ends with a clear statement of what you should
+          actually know and be able to do.
+        </p>
+        <p>
+          I'm releasing all of this openly because I benefited enormously from notes and resources
+          shared by others during my preparation. This is my contribution to that tradition.
+        </p>
+
+        <h3 style="font-family:var(--font-serif);font-size:1.2rem;font-weight:500;margin:40px 0 20px">Results</h3>
+        <div class="achievement">
+          <div class="achievement-rank">3</div>
+          <div class="achievement-text">
+            <strong>AIR 3 — GATE 2026 (Data Science & AI)</strong>
+            A very strong result in DA, reflecting focused preparation in Statistics,
+            Linear Algebra, ML, and Python.
+          </div>
+        </div>
+        <div class="achievement">
+          <div class="achievement-rank">147</div>
+          <div class="achievement-text">
+            <strong>AIR 147 — GATE 2026 (CS & IT)</strong>
+            A solid CS result alongside the DA paper, with preparation spread across
+            Algorithms, OS, DBMS, Networks, and Mathematics.
+          </div>
+        </div>
+
+        <h3 style="font-family:var(--font-serif);font-size:1.2rem;font-weight:500;margin:40px 0 20px">A note on strategy</h3>
+        <p>
+          I did not use every resource available. I picked a small number of sources, went
+          deep on each, and spent most of my time solving problems and reviewing mistakes.
+          The <a href="#">Resources page</a> lists exactly what I used, with honest notes
+          on what each resource is good and not good for.
+        </p>
+        <p>
+          If I were to distill preparation into one principle: <strong>understand the question behind the question.</strong>
+          GATE tests your ability to reason under constraints, not recall under pressure.
+        </p>
+      </div>
+
+      <div>
+        <div class="about-card">
+          <div class="about-name">Aranya Ghosh</div>
+          <div class="about-role">MS Student · Rutgers University</div>
+          <div class="about-item">
+            <div class="about-item-icon">🏆</div>
+            <div class="about-item-text">
+              <strong>AIR 3, GATE DA 2026</strong>
+              Data Science & Artificial Intelligence
+            </div>
+          </div>
+          <div class="about-item">
+            <div class="about-item-icon">🎯</div>
+            <div class="about-item-text">
+              <strong>AIR 147, GATE CS 2026</strong>
+              Computer Science & IT
+            </div>
+          </div>
+          <div class="about-item">
+            <div class="about-item-icon">🎓</div>
+            <div class="about-item-text">
+              <strong>Rutgers University</strong>
+              Master's Student (Current)
+            </div>
+          </div>
+          <div class="about-item">
+            <div class="about-item-icon">📂</div>
+            <div class="about-item-text">
+              <strong>GitHub</strong>
+              <a href="https://github.com/aranyaghosh" target="_blank">github.com/aranyaghosh</a>
+            </div>
+          </div>
+          <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border)">
+            <div style="font-size:.75rem;color:var(--text3);margin-bottom:12px;letter-spacing:.04em;text-transform:uppercase">Contributing</div>
+            <p style="font-size:.82rem;color:var(--text2);line-height:1.65">
+              Found an error or have a better explanation? Open a PR on GitHub.
+              Contributions are welcome and credited.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-left">GATE Notes · Aranya Ghosh</div>
+    <div class="footer-links">
+      <a href="https://github.com/aranyaghosh/gate-notes" target="_blank">GitHub</a>
+      <a href="#" onclick="showPage('about')">About</a>
+      <a href="#">MIT License</a>
+    </div>
+    <div class="footer-right">Free to use with attribution</div>
+  </div>
+</footer>
+
+<script>
+/* ── DATA ────────────────────────────────────────────────────── */
+const SUBJECTS = [
+  {
+    id: 'maths', name: 'Mathematics', icon: '∑', accent: '#9a7b3f',
+    desc: 'Linear Algebra, Calculus, Probability, Discrete Mathematics — the quantitative backbone of GATE.',
+    tags: ['formula', 'important'],
+    topics: [
+      { name: 'Linear Algebra', tags: ['formula','important','pyq'], time: '~4 hrs' },
+      { name: 'Eigenvalues & Eigenvectors', tags: ['formula','pyq'], time: '~2 hrs' },
+      { name: 'Calculus & Limits', tags: ['formula'], time: '~3 hrs' },
+      { name: 'Differential Equations', tags: ['formula'], time: '~2 hrs' },
+      { name: 'Probability Theory', tags: ['formula','important','pyq'], time: '~3 hrs' },
+      { name: 'Bayes & Distributions', tags: ['formula','pyq'], time: '~2 hrs' },
+      { name: 'Discrete Mathematics', tags: ['conceptual','important'], time: '~3 hrs' },
+      { name: 'Graph Theory', tags: ['conceptual','pyq'], time: '~2 hrs' },
+    ]
+  },
+  {
+    id: 'algorithms', name: 'Algorithms & DSA', icon: '⚡', accent: '#2a5298',
+    desc: 'Sorting, searching, dynamic programming, graph algorithms, and complexity theory.',
+    tags: ['conceptual', 'important'],
+    topics: [
+      { name: 'Sorting Algorithms', tags: ['important','pyq'], time: '~2 hrs' },
+      { name: 'Dynamic Programming', tags: ['important','pyq'], time: '~5 hrs' },
+      { name: 'Graph Traversals (BFS/DFS)', tags: ['important','pyq'], time: '~3 hrs' },
+      { name: 'Shortest Path Algorithms', tags: ['formula','pyq'], time: '~2 hrs' },
+      { name: 'Trees & Heaps', tags: ['conceptual','pyq'], time: '~3 hrs' },
+      { name: 'Hashing', tags: ['conceptual'], time: '~1.5 hrs' },
+      { name: 'NP-Completeness', tags: ['conceptual','important'], time: '~2 hrs' },
+      { name: 'Divide & Conquer', tags: ['formula','pyq'], time: '~2 hrs' },
+    ]
+  },
+  {
+    id: 'os', name: 'Operating Systems', icon: '🖥', accent: '#7a2a2a',
+    desc: 'Processes, threads, memory management, scheduling, synchronization, and file systems.',
+    tags: ['conceptual', 'pyq'],
+    topics: [
+      { name: 'Processes & Threads', tags: ['conceptual','important'], time: '~3 hrs' },
+      { name: 'CPU Scheduling', tags: ['formula','pyq'], time: '~2 hrs' },
+      { name: 'Synchronization & Deadlocks', tags: ['important','pyq'], time: '~3 hrs' },
+      { name: 'Memory Management', tags: ['formula','pyq'], time: '~3 hrs' },
+      { name: 'Virtual Memory & Paging', tags: ['formula','important'], time: '~2 hrs' },
+      { name: 'File Systems', tags: ['conceptual'], time: '~2 hrs' },
+    ]
+  },
+  {
+    id: 'dbms', name: 'DBMS', icon: '🗃', accent: '#2a7a5a',
+    desc: 'Relational model, SQL, normalization, transactions, indexing, and query optimization.',
+    tags: ['conceptual', 'formula', 'pyq'],
+    topics: [
+      { name: 'Relational Model & RA', tags: ['conceptual','important'], time: '~2 hrs' },
+      { name: 'SQL — Deep Dive', tags: ['important','pyq'], time: '~3 hrs' },
+      { name: 'Normalization (1NF–BCNF)', tags: ['formula','pyq'], time: '~3 hrs' },
+      { name: 'Transactions & ACID', tags: ['conceptual','important'], time: '~2 hrs' },
+      { name: 'Concurrency Control', tags: ['conceptual','pyq'], time: '~2 hrs' },
+      { name: 'Indexing & B-Trees', tags: ['formula','pyq'], time: '~2 hrs' },
+    ]
+  },
+  {
+    id: 'networks', name: 'Computer Networks', icon: '🌐', accent: '#2a5298',
+    desc: 'OSI/TCP-IP models, routing, transport protocols, application layer, and network security.',
+    tags: ['conceptual', 'pyq'],
+    topics: [
+      { name: 'OSI & TCP/IP Layers', tags: ['conceptual','important'], time: '~2 hrs' },
+      { name: 'Data Link Layer', tags: ['conceptual','pyq'], time: '~2 hrs' },
+      { name: 'Routing Algorithms', tags: ['formula','pyq'], time: '~2 hrs' },
+      { name: 'TCP & Congestion Control', tags: ['formula','important'], time: '~3 hrs' },
+      { name: 'Application Layer (DNS, HTTP)', tags: ['conceptual'], time: '~1.5 hrs' },
+      { name: 'Network Security Basics', tags: ['conceptual'], time: '~1.5 hrs' },
+    ]
+  },
+  {
+    id: 'ml', name: 'Machine Learning', icon: '🤖', accent: '#6a2a7a',
+    desc: 'Supervised & unsupervised learning, optimization, deep learning fundamentals, and statistics for ML.',
+    tags: ['formula', 'important'],
+    topics: [
+      { name: 'Linear & Logistic Regression', tags: ['formula','important','pyq'], time: '~3 hrs' },
+      { name: 'Decision Trees & Random Forests', tags: ['conceptual','pyq'], time: '~2 hrs' },
+      { name: 'SVM & Kernel Methods', tags: ['formula','important'], time: '~3 hrs' },
+      { name: 'Neural Networks & Backprop', tags: ['formula','important'], time: '~4 hrs' },
+      { name: 'Clustering (K-Means, GMM)', tags: ['formula'], time: '~2 hrs' },
+      { name: 'Dimensionality Reduction', tags: ['formula','pyq'], time: '~2 hrs' },
+      { name: 'Bias-Variance & Regularization', tags: ['conceptual','important'], time: '~2 hrs' },
+      { name: 'Bayesian Methods', tags: ['formula'], time: '~2 hrs' },
+    ]
+  }
+];
+
+const SAMPLE_NOTES = {
+  'maths-linear-algebra': `# Linear Algebra
+
+> **Subject**: Mathematics  
+> **Tags**: \`#important\` \`#formula-heavy\` \`#pyq-frequent\`
+
+---
+
+## Core Idea
+
+Linear algebra is the study of vector spaces and linear transformations between them. In GATE, it appears in nearly every numerical answer question involving systems of equations, eigenvalues, and matrix decompositions.
+
+---
+
+## Key Definitions
+
+| Term | Definition |
+|------|------------|
+| **Vector Space** | A set closed under addition and scalar multiplication |
+| **Rank** | Number of linearly independent rows (or columns) |
+| **Nullity** | Dimension of the null space |
+| **Eigenvalue** | Scalar λ such that Av = λv for some nonzero v |
+
+---
+
+## Rank-Nullity Theorem
+
+For any matrix $A$ of size $m \\times n$:
+
+$$\\text{rank}(A) + \\text{nullity}(A) = n$$
+
+**Key insight**: This connects the "useful" dimensions of a transformation with the dimensions it "collapses" to zero.
+
+---
+
+## Eigenvalues & Characteristic Polynomial
+
+Given matrix $A$, eigenvalues satisfy:
+
+$$\\det(A - \\lambda I) = 0$$
+
+**Properties**:
+- Sum of eigenvalues = Trace(A)
+- Product of eigenvalues = det(A)
+- Symmetric matrices always have real eigenvalues
+
+---
+
+## GATE-Specific Notes
+
+> GATE frequently tests whether you can compute rank quickly, identify conditions for unique solutions, and apply eigenvalue properties without full computation.
+
+- **Rank** questions: Use row reduction mentally for small matrices.
+- **Eigenvalue** shortcuts: Use trace and determinant properties to avoid full characteristic polynomial computation.
+- A square matrix $A$ has a unique solution to $Ax = b$ **if and only if** $\\det(A) \\neq 0$.
+
+---
+
+## Key Takeaways
+
+> ✦ For a system $Ax = b$: unique solution iff rank(A) = rank([A|b]) = n
+
+- Rank = number of non-zero rows after row echelon form
+- Eigenvalues of triangular matrices are the diagonal entries
+- $A$ is invertible $\\Leftrightarrow$ all eigenvalues are non-zero
+`,
+  'algorithms-dp': `# Dynamic Programming
+
+> **Subject**: Algorithms  
+> **Tags**: \`#important\` \`#pyq-frequent\`
+
+---
+
+## Core Idea
+
+Dynamic programming is a technique for solving problems by breaking them into overlapping subproblems and storing solutions to avoid recomputation. It applies when a problem has **optimal substructure** and **overlapping subproblems**.
+
+---
+
+## The Two Approaches
+
+### Top-Down (Memoization)
+
+Start from the original problem, recurse, and cache results.
+
+\`\`\`python
+memo = {}
+def fib(n):
+    if n <= 1: return n
+    if n in memo: return memo[n]
+    memo[n] = fib(n-1) + fib(n-2)
+    return memo[n]
+\`\`\`
+
+### Bottom-Up (Tabulation)
+
+Build the solution from smallest subproblems upward.
+
+\`\`\`python
+def fib(n):
+    dp = [0] * (n+1)
+    dp[1] = 1
+    for i in range(2, n+1):
+        dp[i] = dp[i-1] + dp[i-2]
+    return dp[n]
+\`\`\`
+
+---
+
+## Classic Problems
+
+| Problem | Recurrence | Complexity |
+|---------|-----------|------------|
+| Fibonacci | $F(n) = F(n-1) + F(n-2)$ | O(n) |
+| LCS | $dp[i][j] = dp[i-1][j-1]+1$ if match | O(mn) |
+| 0/1 Knapsack | $dp[i][w] = \\max(dp[i-1][w], v_i + dp[i-1][w-w_i])$ | O(nW) |
+| Edit Distance | $dp[i][j] = \\min(\\text{insert, delete, replace})$ | O(mn) |
+
+---
+
+## GATE-Specific Notes
+
+> DP questions in GATE usually involve **identifying the recurrence** and **computing time/space complexity**.
+
+- If the question says "minimum cost" or "maximum value" with constraints — think DP.
+- Always verify: does the greedy approach fail here? If yes, DP is likely the answer.
+- For GATE 2024 Q14: LCS of two strings — classic $O(mn)$ tabulation.
+
+---
+
+## Key Takeaways
+
+> ✦ DP = optimal substructure + overlapping subproblems + memoization
+
+- Greedy fails when local optimal ≠ global optimal
+- Always define dp[i] precisely before writing recurrence
+- Space optimization: many 2D DPs can be reduced to O(n) space
+`
+};
+
+/* ── STATE ───────────────────────────────────────────────────── */
+let currentFilter = 'all';
+let currentNote = null;
+
+/* ── THEME ───────────────────────────────────────────────────── */
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('theme-btn').textContent = isDark ? '☀' : '☾';
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+}
+(function() {
+  const t = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('theme-btn').textContent = t === 'dark' ? '☾' : '☀';
+})();
+
+/* ── NAV ────────────────────────────────────────────────────── */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + id);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function toggleMenu() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+/* ── RENDER HOME GRID ────────────────────────────────────────── */
+function renderHomeGrid() {
+  const grid = document.getElementById('home-subjects-grid');
+  grid.innerHTML = SUBJECTS.map(s => `
+    <div class="subject-card" style="--card-accent:${s.accent}"
+         onclick="openSubject('${s.id}')">
+      <div class="card-icon">${s.icon}</div>
+      <div class="card-title">${s.name}</div>
+      <div class="card-desc">${s.desc}</div>
+      <div class="card-tags">${s.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+    </div>
+  `).join('');
+}
+
+/* ── RENDER SUBJECTS PAGE ────────────────────────────────────── */
+function renderSubjectsPage(filter = 'all', query = '') {
+  const container = document.getElementById('subjects-full-list');
+  const q = query.toLowerCase();
+
+  container.innerHTML = SUBJECTS.map(s => {
+    const topics = s.topics.filter(t => {
+      const matchFilter = filter === 'all' || t.tags.includes(filter);
+      const matchQuery = !q || t.name.toLowerCase().includes(q) || s.name.toLowerCase().includes(q);
+      return matchFilter && matchQuery;
+    });
+    if (!topics.length) return '';
+    return `
+      <div class="subject-section" data-subject="${s.id}">
+        <div class="subject-section-header">
+          <span style="font-size:1.4rem">${s.icon}</span>
+          <h3 class="subject-section-title">${s.name}</h3>
+          <span class="tag">${topics.length} topics</span>
+        </div>
+        <div class="topic-list">
+          ${topics.map(t => `
+            <div class="topic-item" onclick="openNote('${s.id}','${t.name}')">
+              <span class="topic-name">${t.name}</span>
+              <span class="topic-meta">${t.time}</span>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function setFilter(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSubjectsPage(filter, document.getElementById('topic-search').value);
+}
+
+function filterTopics() {
+  renderSubjectsPage(currentFilter, document.getElementById('topic-search').value);
+}
+
+function openSubject(id) {
+  showPage('subjects');
+  setTimeout(() => {
+    const el = document.querySelector(`[data-subject="${id}"]`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+/* ── RENDER NOTE VIEWER ──────────────────────────────────────── */
+function openNote(subjectId, topicName) {
+  const subject = SUBJECTS.find(s => s.id === subjectId);
+  if (!subject) return;
+
+  showPage('notes');
+
+  // Sidebar
+  const sidebar = document.getElementById('sidebar-content');
+  sidebar.innerHTML = SUBJECTS.map(s => `
+    <div class="sidebar-section">
+      <div class="sidebar-label">${s.name}</div>
+      ${s.topics.map(t => `
+        <a class="sidebar-item ${s.id === subjectId && t.name === topicName ? 'active' : ''}"
+           onclick="openNote('${s.id}','${t.name}')">${t.name}</a>
+      `).join('')}
+    </div>
+  `).join('');
+
+  // Breadcrumb
+  document.getElementById('breadcrumb-subject').textContent = subject.name;
+  document.getElementById('breadcrumb-topic').textContent = topicName;
+
+  // Note content
+  const noteKey = subjectId + '-' + topicName.toLowerCase().replace(/[^a-z0-9]/g, '-');
+  const noteMarkdown = SAMPLE_NOTES[noteKey] ||
+    `# ${topicName}\n\n> **Subject**: ${subject.name}\n\n---\n\n## Note Coming Soon\n\nThis topic is being written. Check back soon, or [contribute on GitHub](https://github.com/aranyaghosh/gate-notes).\n\nIn the meantime, use the navigation on the left to explore available notes.`;
+
+  const html = marked.parse(noteMarkdown);
+  document.getElementById('note-content').innerHTML = html;
+
+  // Trigger MathJax
+  if (window.MathJax && MathJax.typesetPromise) {
+    MathJax.typesetPromise([document.getElementById('note-content')]);
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* ── INIT ────────────────────────────────────────────────────── */
+renderHomeGrid();
+renderSubjectsPage();
+</script>
+</body>
+</html>
