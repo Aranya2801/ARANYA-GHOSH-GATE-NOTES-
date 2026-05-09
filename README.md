@@ -1,252 +1,335 @@
-<div align="center">
-
-<img src="https://img.shields.io/badge/GATE%202026-AIR%203%20%7C%20DA-0a0a0a?style=for-the-badge&labelColor=0a0a0a&color=c9a84c" />
-<img src="https://img.shields.io/badge/GATE%202026-AIR%20147%20%7C%20CS-0a0a0a?style=for-the-badge&labelColor=0a0a0a&color=4c7ac9" />
-<img src="https://img.shields.io/badge/Rutgers%20University-MS%20Student-0a0a0a?style=for-the-badge&labelColor=0a0a0a&color=cc0033" />
-
-<br /><br />
-
 # GATE Notes — Aranya Ghosh
+
+[![GATE 2026 DA — AIR 3](https://img.shields.io/badge/GATE%202026-AIR%203%20%7C%20DA-d4a94a?style=for-the-badge&labelColor=0b0b0a)](https://github.com/Aranya2801/ARANYA-GHOSH-GATE-NOTES-)
+[![GATE 2026 CS — AIR 147](https://img.shields.io/badge/GATE%202026-AIR%20147%20%7C%20CS-5870d8?style=for-the-badge&labelColor=0b0b0a)](https://github.com/Aranya2801/ARANYA-GHOSH-GATE-NOTES-)
+[![Rutgers University](https://img.shields.io/badge/Rutgers%20University-MS%20Student-cc0033?style=for-the-badge&labelColor=0b0b0a)](https://rutgers.edu)
+[![License: MIT](https://img.shields.io/badge/License-MIT-3ab8a0?style=for-the-badge&labelColor=0b0b0a)](LICENSE)
+[![Live Site](https://img.shields.io/badge/Live%20Site-Open%20Notes-9060c8?style=for-the-badge&labelColor=0b0b0a)](https://aranya2801.github.io/ARANYA-GHOSH-GATE-NOTES-)
+
+---
 
 **Structured, rigorous, and free — notes built for those who take GATE seriously.**
 
-[Website](https://aranyaghosh.github.io/gate-notes) · [Subjects](#subjects) · [PYQs](#previous-year-questions) · [Resources](#resources) · [Contribute](#contributing)
+This is the complete study system I used to secure **AIR 3 in GATE 2026 (Data Science & AI)** and **AIR 147 in GATE 2026 (CS & IT)**. Every note, formula sheet, and PYQ analysis is here — openly available, free forever.
 
-</div>
-
----
-
-## About This Repository
-
-This repository contains my personal GATE preparation notes, compiled over months of study and refined through the actual exam experience. I secured **AIR 3 in GATE 2026 (Data Science & AI)** and **AIR 147 in GATE 2026 (CS & IT)** — and I'm sharing everything I used to get there.
-
-These notes are not a textbook substitute. They are a thinking companion — dense with insight, light on fluff, and designed for someone who already knows the basics and wants to go deeper.
-
-I am currently a Master's student at **Rutgers University**. I maintain this repository because I benefited enormously from notes shared by others, and I want to give that back to the GATE community.
+🌐 **[Open the interactive notes website →](https://aranya2801.github.io/ARANYA-GHOSH-GATE-NOTES-)**
 
 ---
 
-## Table of Contents
-
-- [Repository Structure](#repository-structure)
-- [Subjects](#subjects)
-  - [Mathematics](#mathematics)
-  - [Algorithms & Data Structures](#algorithms--data-structures)
-  - [Operating Systems](#operating-systems)
-  - [Database Management Systems](#database-management-systems)
-  - [Computer Networks](#computer-networks)
-  - [Machine Learning & AI](#machine-learning--ai)
-- [Previous Year Questions](#previous-year-questions)
-- [Resources](#resources)
-- [How to Use These Notes](#how-to-use-these-notes)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
-## Repository Structure
+## What's in This Repository
 
 ```
 gate-notes/
 │
+├── index.html                    ← Full interactive notes website (single file)
+├── README.md                     ← This file
+├── note-template.md              ← Template for contributing notes
+├── setup-repo.sh                 ← One-command local setup
+│
 ├── Mathematics/
 │   ├── notes/
+│   │   ├── linear-algebra.md        ← Vector spaces, rank, eigenvalues, SVD
+│   │   ├── eigenvalues.md           ← Cayley-Hamilton, diagonalization
+│   │   ├── calculus.md              ← Single & multivariable, gradient
+│   │   ├── probability.md           ← Probability theory, Bayes, distributions
+│   │   ├── statistics-for-ml.md     ← MLE, MAP, hypothesis testing
+│   │   └── discrete-math.md         ← Logic, sets, combinatorics, graph theory
 │   ├── practice/
+│   │   ├── linear-algebra-problems.md
+│   │   ├── probability-problems.md
+│   │   └── ...
 │   └── summary/
+│       ├── linear-algebra-summary.md
+│       └── ...
 │
 ├── Algorithms/
 │   ├── notes/
+│   │   ├── sorting.md               ← All sorts, lower bounds
+│   │   ├── dynamic-programming.md   ← LCS, Knapsack, Edit Distance, DP on trees
+│   │   ├── graphs.md                ← BFS, DFS, Dijkstra, Bellman-Ford, MST
+│   │   ├── divide-conquer.md        ← Master theorem, Karatsuba
+│   │   ├── trees-heaps.md           ← BST, AVL, heaps, Huffman
+│   │   ├── hashing.md               ← Hash functions, collision resolution
+│   │   ├── np-completeness.md       ← P vs NP, reductions, approx algorithms
+│   │   └── amortized.md             ← Aggregate, accounting, potential methods
 │   ├── practice/
 │   └── summary/
 │
 ├── OperatingSystems/
 │   ├── notes/
+│   │   ├── processes.md             ← PCB, lifecycle, threads, concurrency
+│   │   ├── scheduling.md            ← FCFS, SJF, SRTF, RR, priority
+│   │   ├── synchronization.md       ← Semaphores, monitors, classical problems
+│   │   ├── deadlocks.md             ← Banker's algorithm, detection, recovery
+│   │   ├── memory.md                ← Paging, TLB, page replacement
+│   │   └── filesystems.md           ← Allocation, inodes, journaling
 │   ├── practice/
 │   └── summary/
 │
 ├── DBMS/
 │   ├── notes/
+│   │   ├── relational-model.md      ← Schema, keys, relational algebra
+│   │   ├── sql.md                   ← Complete SQL reference + window functions
+│   │   ├── normalization.md         ← FDs, 1NF–BCNF, lossless decomposition
+│   │   ├── transactions.md          ← ACID, serializability, ARIES recovery
+│   │   ├── concurrency.md           ← 2PL, timestamp ordering, MVCC
+│   │   └── indexing.md              ← B/B+ trees, hash index, query opt
 │   ├── practice/
 │   └── summary/
 │
 ├── ComputerNetworks/
 │   ├── notes/
+│   │   ├── models.md                ← OSI & TCP/IP layers
+│   │   ├── data-link.md             ← CRC, sliding window, MAC, ARP
+│   │   ├── routing.md               ← Distance vector, link state, CIDR
+│   │   ├── transport.md             ← TCP, UDP, congestion control
+│   │   ├── application.md           ← DNS, HTTP/2/3, SMTP, FTP
+│   │   └── security.md              ← TLS, RSA, Diffie-Hellman, firewalls
 │   ├── practice/
 │   └── summary/
 │
 ├── MachineLearning/
 │   ├── notes/
+│   │   ├── linear-models.md         ← OLS, gradient descent, logistic regression
+│   │   ├── trees-ensembles.md       ← Decision trees, RF, GBM, XGBoost
+│   │   ├── svm.md                   ← Max-margin, kernels, dual formulation
+│   │   ├── neural-nets.md           ← Backprop (full derivation), CNNs, RNNs
+│   │   ├── clustering.md            ← K-means, GMM, EM, DBSCAN
+│   │   ├── dimensionality.md        ← PCA (SVD connection), LDA, t-SNE
+│   │   ├── bias-variance.md         ← Decomposition proof, regularization
+│   │   └── bayesian.md              ← Naive Bayes, MAP, Gaussian processes
 │   ├── practice/
 │   └── summary/
 │
 ├── PreviousYearQuestions/
 │   ├── CS/
+│   │   ├── 2026/ ← Full paper with solutions
+│   │   ├── 2025/
+│   │   ├── 2024/
+│   │   ├── 2023/
+│   │   ├── 2022/
+│   │   └── analysis.md  ← Topic-wise frequency & pattern analysis
 │   └── DA/
+│       ├── 2026/
+│       ├── 2025/
+│       ├── 2024/
+│       ├── 2023/
+│       └── analysis.md
 │
-├── Resources/
-│   ├── books.md
-│   ├── online-courses.md
-│   └── strategy.md
+├── FormulaSheets/
+│   ├── mathematics-formulas.md
+│   ├── algorithms-complexity.md
+│   ├── ml-formulas.md
+│   ├── os-formulas.md
+│   └── dbms-formulas.md
 │
-└── templates/
-    └── note-template.md
+└── Resources/
+    ├── books.md          ← Curated books with honest reviews
+    ├── online-courses.md ← What I actually used
+    └── strategy.md       ← 6-month preparation strategy
 ```
 
 ---
 
-## Subjects
+## Subjects Covered
 
-### Mathematics
+### 🔢 Mathematics
+> Linear Algebra · Calculus · Probability & Statistics · Discrete Mathematics · Graph Theory
 
-> Linear Algebra · Calculus · Probability & Statistics · Discrete Mathematics
+The quantitative backbone. Linear Algebra and Probability alone account for ~25% of the GATE DA paper. These notes cover full derivations — not just formula lists.
 
-| Topic | Notes | Practice | Summary |
-|---|---|---|---|
-| Linear Algebra | [📄 Notes](Mathematics/notes/linear-algebra.md) | [🧩 Problems](Mathematics/practice/linear-algebra-problems.md) | [⚡ Summary](Mathematics/summary/linear-algebra-summary.md) |
-| Calculus | [📄 Notes](Mathematics/notes/calculus.md) | [🧩 Problems](Mathematics/practice/calculus-problems.md) | [⚡ Summary](Mathematics/summary/calculus-summary.md) |
-| Probability | [📄 Notes](Mathematics/notes/probability.md) | [🧩 Problems](Mathematics/practice/probability-problems.md) | [⚡ Summary](Mathematics/summary/probability-summary.md) |
-| Discrete Math | [📄 Notes](Mathematics/notes/discrete-math.md) | [🧩 Problems](Mathematics/practice/discrete-problems.md) | [⚡ Summary](Mathematics/summary/discrete-summary.md) |
+**Key topics**: Rank-Nullity theorem, Eigenvalue decomposition, SVD, Bayes theorem (deep), MLE/MAP, CLT, Discrete probability, Generating functions.
 
 ---
 
-### Algorithms & Data Structures
+### ⚡ Algorithms & Data Structures
+> Sorting · Dynamic Programming · Graph Algorithms · Complexity Theory · Amortized Analysis
 
-> Sorting · Graph Algorithms · Dynamic Programming · Complexity Theory
+Highest-yield topic for GATE CS. Dynamic Programming questions reward structured thinking more than memorization. These notes teach the *framework*, not just the classics.
 
-| Topic | Notes | Practice | Summary |
-|---|---|---|---|
-| Sorting & Searching | [📄 Notes](Algorithms/notes/sorting.md) | [🧩 Problems](Algorithms/practice/sorting-problems.md) | [⚡ Summary](Algorithms/summary/sorting-summary.md) |
-| Graph Algorithms | [📄 Notes](Algorithms/notes/graphs.md) | [🧩 Problems](Algorithms/practice/graph-problems.md) | [⚡ Summary](Algorithms/summary/graph-summary.md) |
-| Dynamic Programming | [📄 Notes](Algorithms/notes/dp.md) | [🧩 Problems](Algorithms/practice/dp-problems.md) | [⚡ Summary](Algorithms/summary/dp-summary.md) |
-| Complexity | [📄 Notes](Algorithms/notes/complexity.md) | [🧩 Problems](Algorithms/practice/complexity-problems.md) | [⚡ Summary](Algorithms/summary/complexity-summary.md) |
+**Key topics**: Master theorem (all 3 cases), DP recurrences (LCS, Knapsack, Matrix Chain), Dijkstra/Bellman-Ford/Floyd-Warshall, NP-completeness and reductions.
 
 ---
 
-### Operating Systems
+### ⚙ Operating Systems
+> Processes · CPU Scheduling · Synchronization · Memory Management · File Systems
 
-> Process Management · Memory · File Systems · Synchronization
+Appeared in every GATE CS paper in the last 8 years. Deadlock and scheduling questions are especially consistent.
 
-| Topic | Notes | Practice | Summary |
-|---|---|---|---|
-| Processes & Threads | [📄 Notes](OperatingSystems/notes/processes.md) | [🧩 Problems](OperatingSystems/practice/) | [⚡ Summary](OperatingSystems/summary/) |
-| Memory Management | [📄 Notes](OperatingSystems/notes/memory.md) | [🧩 Problems](OperatingSystems/practice/) | [⚡ Summary](OperatingSystems/summary/) |
-| File Systems | [📄 Notes](OperatingSystems/notes/filesystems.md) | [🧩 Problems](OperatingSystems/practice/) | [⚡ Summary](OperatingSystems/summary/) |
-| Deadlocks | [📄 Notes](OperatingSystems/notes/deadlocks.md) | [🧩 Problems](OperatingSystems/practice/) | [⚡ Summary](OperatingSystems/summary/) |
+**Key topics**: Banker's algorithm (worked examples), Semaphore-based solutions, Page replacement (FIFO, LRU, Optimal), Virtual memory and TLB.
 
 ---
 
-### Database Management Systems
+### ▤ Database Management Systems
+> Relational Model · SQL · Normalization · Transactions · Indexing
 
-> Relational Model · SQL · Transactions · Normalization · Indexing
+Normalization (functional dependencies, BCNF) and SQL together are the most tested DBMS areas.
 
-| Topic | Notes | Practice | Summary |
-|---|---|---|---|
-| Relational Model | [📄 Notes](DBMS/notes/relational-model.md) | [🧩 Problems](DBMS/practice/) | [⚡ Summary](DBMS/summary/) |
-| SQL | [📄 Notes](DBMS/notes/sql.md) | [🧩 Problems](DBMS/practice/) | [⚡ Summary](DBMS/summary/) |
-| Normalization | [📄 Notes](DBMS/notes/normalization.md) | [🧩 Problems](DBMS/practice/) | [⚡ Summary](DBMS/summary/) |
-| Transactions | [📄 Notes](DBMS/notes/transactions.md) | [🧩 Problems](DBMS/practice/) | [⚡ Summary](DBMS/summary/) |
+**Key topics**: BCNF decomposition, Dependency preservation, SQL window functions, Serializability and 2PL, B+ tree operations.
 
 ---
 
-### Computer Networks
+### ◎ Computer Networks
+> OSI/TCP-IP · Data Link · Routing · TCP/UDP · Security
 
-> OSI Model · TCP/IP · Routing · Application Layer · Security
+OSI layer questions and TCP congestion control appear reliably across years.
 
-| Topic | Notes | Practice | Summary |
-|---|---|---|---|
-| OSI & TCP/IP | [📄 Notes](ComputerNetworks/notes/models.md) | [🧩 Problems](ComputerNetworks/practice/) | [⚡ Summary](ComputerNetworks/summary/) |
-| Routing Protocols | [📄 Notes](ComputerNetworks/notes/routing.md) | [🧩 Problems](ComputerNetworks/practice/) | [⚡ Summary](ComputerNetworks/summary/) |
-| Transport Layer | [📄 Notes](ComputerNetworks/notes/transport.md) | [🧩 Problems](ComputerNetworks/practice/) | [⚡ Summary](ComputerNetworks/summary/) |
+**Key topics**: CRC error detection, Sliding window protocols, Dijkstra-based routing, TCP three-way handshake, Congestion control (Tahoe/Reno).
 
 ---
 
-### Machine Learning & AI
+### ◈ Machine Learning & AI
+> Supervised Learning · Unsupervised · Deep Learning · Bayesian Methods
 
-> Supervised Learning · Unsupervised · Deep Learning · Statistics for ML
+The highest-weight subject in GATE DA. Requires rigorous mathematical foundations — you must be able to derive, not just name.
 
-| Topic | Notes | Practice | Summary |
-|---|---|---|---|
-| Linear Models | [📄 Notes](MachineLearning/notes/linear-models.md) | [🧩 Problems](MachineLearning/practice/) | [⚡ Summary](MachineLearning/summary/) |
-| Decision Trees | [📄 Notes](MachineLearning/notes/trees.md) | [🧩 Problems](MachineLearning/practice/) | [⚡ Summary](MachineLearning/summary/) |
-| Neural Networks | [📄 Notes](MachineLearning/notes/neural-nets.md) | [🧩 Problems](MachineLearning/practice/) | [⚡ Summary](MachineLearning/summary/) |
-| Clustering | [📄 Notes](MachineLearning/notes/clustering.md) | [🧩 Problems](MachineLearning/practice/) | [⚡ Summary](MachineLearning/summary/) |
+**Key topics**: Backpropagation (full derivation), Bias-variance decomposition (proof), SVM dual formulation, EM algorithm for GMM, PCA via SVD.
 
 ---
 
-## Previous Year Questions
+## Interactive Website Features
 
-Organized by year and subject, with detailed solutions and pattern analysis.
+The `index.html` file is a self-contained, zero-dependency notes webapp:
 
-```
-PreviousYearQuestions/
-├── CS/
-│   ├── 2024/
-│   ├── 2023/
-│   └── analysis.md     ← Topic-wise frequency analysis
-└── DA/
-    ├── 2024/
-    ├── 2023/
-    └── analysis.md
-```
-
-[→ Browse PYQs](PreviousYearQuestions/)
-
----
-
-## Resources
-
-Curated, not exhaustive. Only what I actually used.
-
-- [📚 Books & Textbooks](Resources/books.md)
-- [🎥 Online Courses](Resources/online-courses.md)
-- [🗺️ Study Strategy](Resources/strategy.md) — How I structured 6 months of preparation
+| Feature | Description |
+|---------|-------------|
+| 📖 **Notes Viewer** | Rendered markdown with LaTeX math (MathJax) |
+| 🔍 **Global Search** | Keyboard shortcut `⌘K` / `Ctrl+K` across all 60+ topics |
+| 📌 **Bookmarks** | Persist across sessions via localStorage |
+| 🌙 **Dark/Light Mode** | Toggleable, persisted preference |
+| ⏱ **Pomodoro Timer** | Built-in study timer with session tracking |
+| 📊 **Reading Progress** | Per-note read % indicator |
+| 🧮 **Formula Sheets** | Rendered LaTeX quick-reference for all subjects |
+| 📝 **PYQ Browser** | Filterable PYQs with hints/approaches |
+| 📱 **Responsive** | Works on mobile, tablet, desktop |
+| 🖨 **Print-ready** | Print any note for offline study |
 
 ---
 
 ## How to Use These Notes
 
-1. **If you're starting out** — Read the full notes for each topic, attempt practice problems, then review summaries.
-2. **If you're in revision mode** — Go directly to the summary sheets. Use practice problems to test recall.
-3. **If you're solving PYQs** — Cross-reference with notes when you encounter a weak area.
-4. **Before the exam** — Use the one-page summary sheets exclusively.
+### If you're starting (3–6 months out)
+1. Pick one subject at a time — don't jump around
+2. Read the **full notes** for a topic (the ones under `/notes/`)
+3. **Derive every formula** at least once — don't just read it
+4. Solve all **practice problems** without hints first
+5. Use the **summary sheet** at the end of each week as a recall test
 
-> **Tip**: Don't read passively. Every formula you encounter — derive it once. Every algorithm — trace through it manually. The goal is understanding, not memorization.
+### If you're in revision mode (1–2 months out)
+- Go directly to **summary sheets** — test recall before looking
+- Solve **PYQs** topic by topic; note every gap
+- Use the **formula sheets** in `/FormulaSheets/` for daily review
+
+### Final 2 weeks
+- Formula sheets only
+- Full mock tests under timed conditions
+- No new topics — only reinforcement
+
+> **Core principle**: Don't read passively. Every formula you encounter — derive it once. Every algorithm — trace through it manually. Every concept — explain it out loud to yourself. The goal is understanding, not memorization.
+
+---
+
+## Previous Year Questions — Pattern Analysis
+
+### GATE CS — Topic Frequency (2019–2026)
+
+| Subject | Avg Marks/Year | High-Yield Topics |
+|---------|---------------|-------------------|
+| Mathematics | 13–15 | Linear Algebra, Probability |
+| Algorithms | 10–12 | DP, Graph Algorithms, Complexity |
+| Operating Systems | 8–10 | Scheduling, Deadlocks, Memory |
+| DBMS | 8–10 | SQL, Normalization, Transactions |
+| Computer Networks | 8–10 | TCP, Routing, Data Link |
+| Theory of Computation | 6–8 | DFAs, CFGs, Turing Machines |
+
+### GATE DA — Topic Frequency (2024–2026)
+
+| Subject | Avg Marks/Year | High-Yield Topics |
+|---------|---------------|-------------------|
+| Mathematics | 18–22 | Linear Algebra, Probability, Statistics |
+| Machine Learning | 14–18 | Regression, Trees, Neural Nets, SVM |
+| Algorithms | 8–10 | Sorting, DP, Graph Algorithms |
+| Programming (Python) | 6–8 | Complexity, Data Structures |
+| Databases & OS | 6–8 | SQL, Scheduling, Memory |
+
+---
+
+## Resources — What I Actually Used
+
+### Books
+| Subject | Book | Notes |
+|---------|------|-------|
+| Linear Algebra | Gilbert Strang — *Introduction to Linear Algebra* | Best for intuition; read Ch 1–6 |
+| Algorithms | CLRS — *Introduction to Algorithms* | Use selectively; don't read cover-to-cover |
+| OS | Silberschatz — *Operating System Concepts* | Solid reference; use index-first |
+| DBMS | Ramakrishnan & Gehrke — *Database Management Systems* | Best for normalization chapters |
+| ML | Bishop — *Pattern Recognition and ML* | Dense but rigorous; Ch 1–4 essential for DA |
+| Probability | DeGroot & Schervish — *Probability and Statistics* | Better than Walpole for rigor |
+
+### Online Resources
+- **MIT OCW 18.06** — Gilbert Strang's Linear Algebra lectures (watch them all)
+- **Stanford CS229** — Andrew Ng's ML course (lecture notes are better than videos for GATE)
+- **NPTEL GATE Lectures** — Useful for OS and Networks
+- **GFG GeeksForGeeks** — Good for quick algorithm pseudocode, not for depth
+- **PYQ on GATE Official** — Always use official PDFs, not third-party compilations
 
 ---
 
 ## Contributing
 
-This is a living repository. If you find an error, have a better explanation, or want to add solved PYQs:
+This is a living repository. Contributions that improve clarity, fix errors, or add solved PYQs are welcome.
 
-1. Fork the repository
-2. Create a branch: `git checkout -b fix/topic-name`
-3. Make your changes following the [note template](templates/note-template.md)
-4. Open a pull request with a clear description
+### How to contribute
+```bash
+# 1. Fork and clone
+git clone https://github.com/YOUR_USERNAME/ARANYA-GHOSH-GATE-NOTES-.git
+cd ARANYA-GHOSH-GATE-NOTES-
 
-Please maintain the tone and formatting standard of existing notes. Clarity is the highest priority.
+# 2. Create a branch
+git checkout -b fix/linear-algebra-eigenvalue-section
+
+# 3. Make changes using the note template
+# See: templates/note-template.md
+
+# 4. Commit and push
+git add .
+git commit -m "fix: correct eigenvalue property in linear-algebra.md"
+git push origin fix/linear-algebra-eigenvalue-section
+
+# 5. Open a pull request with a clear description
+```
+
+### What makes a good contribution
+- **Errors**: Any factual mistake, even small ones — open a PR immediately
+- **Clarity**: A better explanation of a concept that preserves accuracy
+- **PYQs**: Solved PYQs with detailed, step-by-step explanations (not just answers)
+- **Practice problems**: Well-scoped problems that reveal specific concept gaps
+
+### What to avoid
+- Adding new topics without following the note-template format
+- Copying from textbooks (paraphrase + cite)
+- Changing the organizational structure without discussion (open an issue first)
 
 ---
 
 ## A Note on Motivation
 
-GATE is a test of clarity, not cleverness. The students who do well are rarely the ones who studied the most — they're the ones who understood deeply and could think clearly under pressure.
+GATE is a test of clarity, not cleverness.
 
-These notes are my attempt to distill that clarity. I hope they help you build your own.
+The students who do well are rarely the ones who studied the most hours. They are the ones who understood deeply enough to think clearly under pressure — who could reconstruct a formula from first principles when their memory failed, who could recognize the structure of an unseen problem because they had internalized the pattern.
+
+These notes are my attempt to build that kind of clarity, and to share it. I hope they help you build your own.
 
 Good luck.
 
 ---
 
-<div align="center">
-
 **Aranya Ghosh**  
 AIR 3 — GATE 2026 (DA) · AIR 147 — GATE 2026 (CS)  
 MS Student, Rutgers University
 
-[Website](https://aranyaghosh.github.io/gate-notes) · [GitHub](https://github.com/aranyaghosh)
+[GitHub](https://github.com/Aranya2801) · [Repository](https://github.com/Aranya2801/ARANYA-GHOSH-GATE-NOTES-)
 
-<br/>
+---
 
-<sub>Licensed under MIT. Free to use, adapt, and share with attribution.</sub>
-
-</div>
+*Licensed under MIT. Free to use, adapt, and share with attribution.*
